@@ -1,5 +1,5 @@
 /**
- * A DTO bean for perfoming business operation on  customer data from DAO Layer
+ * A DTO  bean for perfoming business operation on  customer deposit data from DAO Layer
  * 
  * @author Safvan 
  * @version 1.0
@@ -7,7 +7,7 @@
 
 package in.ineuron.dto;
 
-public class CustomerDto
+public class CustomerDepositDto
 {
 	private String customerName;
 	private String customerAddress;

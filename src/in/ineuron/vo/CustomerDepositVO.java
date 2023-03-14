@@ -6,9 +6,9 @@
  * @version 1.0
  */
 
-package in.ineuron.bo;
+package in.ineuron.vo;
 
-public class CustomerBO
+public class CustomerDepositVO
 {
 	private String customerName;
 	private String customerAddress;
