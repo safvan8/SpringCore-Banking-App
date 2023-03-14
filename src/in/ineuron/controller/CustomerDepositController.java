@@ -7,8 +7,8 @@ import in.ineuron.vo.CustomerDepositVO;
 
 public class CustomerDepositController
 {
-	// ICustomerDepositService implementation class object reference , Injected
-	// through constrcutor dependency injection
+	// ICustomerDepositService implementation class object reference ,
+	// Injected through constrcutor dependency injection
 	private ICustomerDepositService depositService;
 
 	static
@@ -39,6 +39,7 @@ public class CustomerDepositController
 		depositDto.setRateOfInterest(Double.parseDouble(depositVO.getRateOfInterest()));
 		depositDto.setDepositTermInYears(Float.parseFloat(depositVO.getDepositTermInYears()));
 
+		// forwarding to service layer
 		return depositService.computeAndStoreSimpleInterest(depositDto);
 	}
 

@@ -14,9 +14,12 @@ public class CustomerDepositBO
 {
 	private String customerName;
 	private String customerAddress;
-	private String depositAmount;
-	private String rateOfInterest;
-	private String depositTermInYears;
+	private Double depositAmount;
+	private Double rateOfInterest;
+	private Float depositTermInYears;
+
+	// additinal variable for storing the calculated interest amount
+	private Double calculatedSimpleInterest;
 
 	public String getCustomerName()
 	{
@@ -38,42 +41,51 @@ public class CustomerDepositBO
 		this.customerAddress = customerAddress;
 	}
 
-	public String getDepositAmount()
+	public Double getDepositAmount()
 	{
 		return depositAmount;
 	}
 
-	public void setDepositAmount(String depositAmount)
+	public void setDepositAmount(Double depositAmount)
 	{
 		this.depositAmount = depositAmount;
 	}
 
-	public String getRateOfInterest()
+	public Double getRateOfInterest()
 	{
 		return rateOfInterest;
 	}
 
-	public void setRateOfInterest(String rateOfInterest)
+	public void setRateOfInterest(Double rateOfInterest)
 	{
 		this.rateOfInterest = rateOfInterest;
 	}
 
-	public String getDepositTermInYears()
+	public Float getDepositTermInYears()
 	{
 		return depositTermInYears;
 	}
 
-	public void setDepositTermInYears(String depositTermInYears)
+	public void setDepositTermInYears(Float depositTermInYears)
 	{
 		this.depositTermInYears = depositTermInYears;
+	}
+
+	public Double getCalculatedSimpleInterest()
+	{
+		return calculatedSimpleInterest;
+	}
+
+	public void setCalculatedSimpleInterest(Double calculatedSimpleInterest)
+	{
+		this.calculatedSimpleInterest = calculatedSimpleInterest;
 	}
 
 	@Override
 	public String toString()
 	{
-		return "CustomerBO [customerName=" + customerName + ", customerAddress=" + customerAddress + ", depositAmount="
-				+ depositAmount + ", rateOfInterest=" + rateOfInterest + ", depositTermInYears=" + depositTermInYears
-				+ "]";
+		return "CustomerDepositBO [customerName=" + customerName + ", customerAddress=" + customerAddress
+				+ ", depositAmount=" + depositAmount + ", rateOfInterest=" + rateOfInterest + ", depositTermInYears="
+				+ depositTermInYears + ", calculatedSimpleInterest=" + calculatedSimpleInterest + "]";
 	}
-
 }

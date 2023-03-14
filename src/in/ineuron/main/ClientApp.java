@@ -4,6 +4,7 @@ import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 
 import in.ineuron.controller.CustomerDepositController;
+import in.ineuron.service.ICustomerDepositService.OperationStatus;
 import in.ineuron.vo.CustomerDepositVO;
 
 public class ClientApp
@@ -19,16 +20,16 @@ public class ClientApp
 		{
 			DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
 			XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(beanFactory);
-			int numberOFBeanDefinitionsLoaded = reader.loadBeanDefinitions("/in/ineuron/resources/applicationContext.xml");
+			int numberOFBeanDefinitionsLoaded = reader
+					.loadBeanDefinitions("/in/ineuron/resources/applicationContext.xml");
 			controller = beanFactory.getBean("controller", CustomerDepositController.class);
-		} 
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			e.printStackTrace();
 			throw new ExceptionInInitializerError();
-			
-		}
-		finally {
+
+		} finally
+		{
 			System.out.println("__________________________________________________________"
 					+ "____________________________________________________________"
 					+ "____________________________________________________________"
@@ -48,9 +49,19 @@ public class ClientApp
 
 		// to get all customer details from the user in the form of Value object
 		CustomerDepositVO customerDepositVO = inputHandler.acceptDepositInfoFromCustomer();
+
+		// passing customerDepositVo object to controller;
+		OperationStatus insertOperationStatus = controller.peformDepsoit(customerDepositVO);
 		
-	// passing customerDepositVo object to controller;
-	controller.peformDepsoit(customerDepositVO);
+		OperationStatus success = OperationStatus.SUCCESS;
+		OperationStatus failed = insertOperationStatus.FAILED;
+		
+		if (success.equals(insertOperationStatus))
+			System.out.println("Deposit successfull.......");
+		else if (failed.equals(insertOperationStatus))
+			System.out.println("Desposit Failed.......");
+		else 
+			System.out.println("Something went wrong........");
 
 	}
 }

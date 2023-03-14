@@ -5,6 +5,7 @@
 
 package in.ineuron.service.impl;
 
+import in.ineuron.bo.CustomerDepositBO;
 import in.ineuron.dao.ICustomerDepositDao;
 import in.ineuron.dto.CustomerDepositDto;
 import in.ineuron.service.ICustomerDepositService;
@@ -38,7 +39,34 @@ public class CustomerDepositServiceImpl implements ICustomerDepositService
 	@Override
 	public OperationStatus computeAndStoreSimpleInterest(CustomerDepositDto depositDto)
 	{
-		return null;
+		// calculating simple interest and generating Bo object
+
+		Double simpleInterest = 0.0;
+
+		simpleInterest = (depositDto.getDepositAmount() * depositDto.getRateOfInterest()
+				* depositDto.getDepositTermInYears()) / 100;
+
+		// converting dto to Bo object
+		CustomerDepositBO depositBo = new CustomerDepositBO();
+		// setting calculated interest amount
+		depositBo.setCalculatedSimpleInterest(simpleInterest);
+
+		depositBo.setCustomerName(depositDto.getCustomerName());
+		depositBo.setCustomerAddress(depositDto.getCustomerAddress());
+		depositBo.setDepositAmount(depositDto.getDepositAmount());
+		depositBo.setRateOfInterest(depositDto.getRateOfInterest());
+		depositBo.setDepositTermInYears(depositDto.getDepositTermInYears());
+
+		int insertedRowsCount = customerDepositDao.customerDepositInsert(depositBo);
+
+		OperationStatus status = null;
+
+		if (insertedRowsCount > 0)
+			status = OperationStatus.SUCCESS;
+		else
+			status = OperationStatus.FAILED;
+
+		return status;
 	}
 
 }
