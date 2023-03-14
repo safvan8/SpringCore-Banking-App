@@ -1,2 +1,3 @@
 # SpringCore-Banking-App
-This is a simple Spring Core banking app that demonstrates the usage of a layered architecture and dependency injection. It uses VO, DTO, and BO to separate concerns between layers and allows users to calculate and store simple interest. Designed for learning purposes and to showcase best practices in Spring app development.
+
+This is a simple banking application developed using Spring Core and a layered approach. It uses Value Objects (VO), Data Transfer Objects (DTO), and Business Objects (BO) to separate concerns between different layers of the application. The application currently allows users to calculate and store simple interest for a deposit, and perform basic CRUD operations on the data. The project is designed for learning purposes and to demonstrate the usage of dependency injection and the layered architecture in a Spring application.
