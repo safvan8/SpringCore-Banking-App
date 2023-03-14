@@ -49,8 +49,8 @@ public class ClientApp
 		// to get all customer details from the user in the form of Value object
 		CustomerDepositVO customerDepositVO = inputHandler.acceptDepositInfoFromCustomer();
 		
-//		// passing customerDeposit Vo to controller;
-//		controller.
+	// passing customerDepositVo object to controller;
+	controller.peformDepsoit(customerDepositVO);
 
 	}
 }
