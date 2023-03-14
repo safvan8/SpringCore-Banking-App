@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+     <!-- Spring provided DataSource injection   -->   
+    <bean id="mySQLDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	    <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+	    <property name="username" value="root"/>
+		<property name="password" value="Safvan@123"/>
+    </bean>
+
+     <!-- Overriding Spring provided DataSource with HikariCpDataSource -->   
+	<bean id="hikariDataSource" class="com.zaxxer.hikari.HikariDataSource" parent="mySQLDataSource">
+		<property name="jdbcUrl" value='jdbc:mysql://localhost:3306/springdemodbo' />
+		<property name="minimumIdle" value='10' /><!-- min pool size -->
+		<property name="maximumPoolSize" value='20' />
+		<property name="connectionTimeout" value='2000' />
+	</bean>
+	
+	<!-- injecting Hikari DataSource to DaoImpl class -->
+	<bean id ="daoImpl" class="in.ineuron.dao.impl.CustomerDepositDaoImpl">
+		<constructor-arg name="mySQLDataSource" ref="hikariDataSource"/>
+	</bean>
+	
+	<!-- injecting Dao HAS a varibale to serviceImpl class -->
+	<bean id="serviceImpl" class="in.ineuron.service.impl.CustomerDepositServiceImpl">
+		<constructor-arg name="customerDepositDao" ref="daoImpl"></constructor-arg>
+	</bean>
+	
+	<!-- injecting service Impl to controller  -->
+	<bean id ="controller" class="in.ineuron.controller.CustomerDepositController">
+	<constructor-arg name="depositService" ref="serviceImpl"/>
+	</bean>
+</beans>
