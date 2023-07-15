@@ -6,7 +6,7 @@ This is a simple console-based banking application developed using Spring Core a
 
 ## Development Approach and Features
 
-The following are the main features and development approach used in this project:
+The following are the main features and development approach used in this project :
 
 - Designed the application to perform basic CRUD operations on the data, and enabled users to calculate and store simple interest for a deposit
 - Performed dependency injection to all layers using Constructor Dependency Injection in XML form
@@ -15,7 +15,6 @@ The following are the main features and development approach used in this projec
 ![image](https://user-images.githubusercontent.com/108913933/231213974-06578119-979b-4084-a8a9-c7c00746eb7f.png)
 
 ## Technology Stack
-
 - Spring Core
 - MySQL Database
 - JDBC Technology
